@@ -1,5 +1,3 @@
-[![Circle CI](https://circleci.com/gh/dr4g0nsr/docker-squid.svg?style=shield)](https://circleci.com/gh/dr4g0nsr/docker-squid) [![Docker Repository on Quay.io](https://quay.io/repository/dr4g0nsr/squid/status "Docker Repository on Quay.io")](https://quay.io/repository/dr4g0nsr/squid)
-
 # dr4g0nsr/squid
 
 - [Introduction](#introduction)
