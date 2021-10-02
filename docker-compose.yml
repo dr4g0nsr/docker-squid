@@ -1,7 +1,19 @@
-Squid:
-  image: sameersbn/squid:3.5.27-2
+squid:
+  hostname: squid
+  container_name: squid
+  image: dr4g0nsr/docker-squid:latest
+  environment:
+    - TRAFFIC_LIMIT="yes"
+    - TRAFFIC_DOWNLOAD_UPLOAD="5000 5000" # KB/sec
+    - SQUID_LIMIT="yes" # Elite proxy settings
+    - SQUID_DOWNLOAD_UPLOAD="5000 5000"
+    - ELITE_PROXY="yes" # Elite proxy settings
+    - CACHE_MANAGER="yes"
   ports:
-    - "3128:3128"
+    - "3128:3128/tcp"
+    - "88:80/tcp"
   volumes:
-    - /srv/docker/squid/cache:/var/spool/squid
+    - ./data/squid/cache:/var/spool/squid
+    - ./squid.conf:/etc/squid/squid.conf
+    - ./data/squid/log:/var/log/squid
   restart: always
