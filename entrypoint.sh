@@ -24,24 +24,26 @@ if [[ ! -z SQUID_LIMIT ]]; then
   echo "Set squid limit (pool)"
   SQUID_PARTS=($SQUID_DOWNLOAD_UPLOAD)
   #echo "Traffic limit set for SQUID (trickle) DL ${SQUID_PARTS[0]} KB/sec / UL ${SQUID_PARTS[1]} KB/sec"
-  cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
-  sed -i "s=#include /etc/squid/squid-delaypools.conf=include /etc/squid/squid-delaypools.conf=g" /etc/squid/squid.conf.backup
-  cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
+  #cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
+  #sed -i "s=#include /etc/squid/squid-delaypools.conf=include /etc/squid/squid-delaypools.conf=g" /etc/squid/squid.conf.backup
+  #cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
 else
-  cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
-  sed -i "s=include /etc/squid/squid-delaypools.conf=#include /etc/squid/squid-delaypools.conf=g" /etc/squid/squid.conf.backup
-  cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
+  echo "No squid limits"
+  #cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
+  #sed -i "s=include /etc/squid/squid-delaypools.conf=#include /etc/squid/squid-delaypools.conf=g" /etc/squid/squid.conf.backup
+  #cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
 fi
 
 if [[ ! -z ${ELITE_PROXY} ]]; then
   echo "Elite proxy settings"
-  cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
-  sed -i "s=include /etc/squid/squid-anonymous.conf=#include /etc/squid/squid-anonymous.conf=g" /etc/squid/squid.conf.backup
-  cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
+  #cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
+  #sed -i "s=include /etc/squid/squid-anonymous.conf=#include /etc/squid/squid-anonymous.conf=g" /etc/squid/squid.conf.backup
+  #cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
 else
-  cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
-  sed -i "s=include /etc/squid/squid-anonymous.conf=#include /etc/squid/squid-anonymous.conf=g" /etc/squid/squid.conf.backup
-  cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
+  echo "Standard proxy"
+  #cp /etc/squid/squid.conf /etc/squid/squid.conf.backup
+  #sed -i "s=include /etc/squid/squid-anonymous.conf=#include /etc/squid/squid-anonymous.conf=g" /etc/squid/squid.conf.backup
+  #cat /etc/squid/squid.conf.backup > /etc/squid/squid.conf
 fi
 
 if [[ ! -z ${TRAFFIC_LIMIT} ]]; then
@@ -62,7 +64,7 @@ if [[ -z ${1} ]]; then
     $(which squid) -N -f /etc/squid/squid.conf -z
   fi
   echo "Starting squid..."
-  exec ${SQUID_EXEC} -f /etc/squid/squid.conf -NYCd 1 ${EXTRA_ARGS} > /dev/null 2>&1
+  exec ${SQUID_EXEC} -f /etc/squid/squid.conf -NYCd 1 ${EXTRA_ARGS}
   read -p "Press enter to continue"
 else
   exec "$@"
