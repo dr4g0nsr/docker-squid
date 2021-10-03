@@ -4,14 +4,14 @@ squid:
   image: dr4g0nsr/docker-squid:latest
   environment:
     - TRAFFIC_LIMIT="yes"
-    - TRAFFIC_DOWNLOAD_UPLOAD="5000 5000" # KB/sec
+    - TRAFFIC_DOWNLOAD_UPLOAD="2000 2000" # KB/sec
     - SQUID_LIMIT="yes" # Elite proxy settings
-    - SQUID_DOWNLOAD_UPLOAD="5000 5000"
+    - SQUID_DOWNLOAD_UPLOAD="1000 1000"
     - ELITE_PROXY="yes" # Elite proxy settings
     - CACHE_MANAGER="yes"
   ports:
     - "3128:3128/tcp"
-    - "88:80/tcp"
+    - "800:80/tcp"
   volumes:
     - ./data/squid/cache:/var/spool/squid
     - ./squid.conf:/etc/squid/squid.conf
