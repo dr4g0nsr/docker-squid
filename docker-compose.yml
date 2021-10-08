@@ -1,4 +1,7 @@
-squid:
+version: '3.5'
+
+services:
+ squid:
   hostname: squid
   container_name: squid
   image: dr4g0nsr/docker-squid:latest
