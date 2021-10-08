@@ -16,4 +16,12 @@ squid:
     - ./data/squid/cache:/var/spool/squid
     - ./squid.conf:/etc/squid/squid.conf
     - ./data/squid/log:/var/log/squid
+  deploy:
+    resources:
+        limits:
+          cpus: 0.50
+          memory: 512M
+        reservations:
+          cpus: 0.25
+          memory: 128M
   restart: always
